@@ -14,11 +14,16 @@
 
 AGameOffBugCharacter::AGameOffBugCharacter()
 {
+	PrimaryActorTick.bCanEverTick = true;
+
+	//set value for tick
+	Timer = 1.f;
+
 	// Set size for collision capsule
 	GetCapsuleComponent()->InitCapsuleSize(42.f, 96.0f);
 
 	// set our turn rates for input
-	BaseTurnRate = 45.f;
+	BaseTurnRat = 44.f;
 	BaseLookUpRate = 45.f;
 
 	// Don't rotate when the controller rotates. Let that just affect the camera.
@@ -69,39 +74,46 @@ void AGameOffBugCharacter::SetupPlayerInputComponent(class UInputComponent* Play
 	PlayerInputComponent->BindAxis("LookUpRate", this, &AGameOffBugCharacter::LookUpAtRate);
 
 	// handle touch devices
-	PlayerInputComponent->BindTouch(IE_Pressed, this, &AGameOffBugCharacter::TouchStarted);
-	PlayerInputComponent->BindTouch(IE_Released, this, &AGameOffBugCharacter::TouchStopped);
+	//PlayerInputComponent->BindTouch(IE_Pressed, this, &AGameOffBugCharacter::TouchStarted);
+	//PlayerInputComponent->BindTouch(IE_Released, this, &AGameOffBugCharacter::TouchStopped);
 
 	// VR headset functionality
-	PlayerInputComponent->BindAction("ResetVR", IE_Pressed, this, &AGameOffBugCharacter::OnResetVR);
+	//PlayerInputComponent->BindAction("ResetVR", IE_Pressed, this, &AGameOffBugCharacter::OnResetVR);
 }
 
+	
 
-void AGameOffBugCharacter::OnResetVR()
+void AGameOffBugCharacter::Tick(float DeltaTime)
 {
+	Super::Tick(DeltaTime);
+	
+}
+
+//void AGameOffBugCharacter::OnResetVR()
+//{
 	// If GameOffBug is added to a project via 'Add Feature' in the Unreal Editor the dependency on HeadMountedDisplay in GameOffBug.Build.cs is not automatically propagated
 	// and a linker error will result.
 	// You will need to either:
 	//		Add "HeadMountedDisplay" to [YourProject].Build.cs PublicDependencyModuleNames in order to build successfully (appropriate if supporting VR).
 	// or:
 	//		Comment or delete the call to ResetOrientationAndPosition below (appropriate if not supporting VR)
-	UHeadMountedDisplayFunctionLibrary::ResetOrientationAndPosition();
-}
+//	UHeadMountedDisplayFunctionLibrary::ResetOrientationAndPosition();
+//}
 
-void AGameOffBugCharacter::TouchStarted(ETouchIndex::Type FingerIndex, FVector Location)
-{
-		Jump();
-}
+//void AGameOffBugCharacter::TouchStarted(ETouchIndex::Type FingerIndex, FVector Location)
+//{
+//		Jump();
+//}
 
-void AGameOffBugCharacter::TouchStopped(ETouchIndex::Type FingerIndex, FVector Location)
-{
-		StopJumping();
-}
+//void AGameOffBugCharacter::TouchStopped(ETouchIndex::Type FingerIndex, FVector Location)
+//{
+//		StopJumping();
+//}
 
 void AGameOffBugCharacter::TurnAtRate(float Rate)
 {
 	// calculate delta for this frame from the rate information
-	AddControllerYawInput(Rate * BaseTurnRate * GetWorld()->GetDeltaSeconds());
+	AddControllerYawInput(Rate * BaseTurnRat * GetWorld()->GetDeltaSeconds());
 }
 
 void AGameOffBugCharacter::LookUpAtRate(float Rate)
