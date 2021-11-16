@@ -15,7 +15,13 @@
 			"${default}",
 			"C:\\Users\\JJ\\Documents\\Unreal Projects\\GameOffBug\\Intermediate\\Build\\Win64\\UE4Editor\\Development\\GameOffBug\\Definitions.GameOffBug.h",
 			"C:\\Users\\JJ\\Documents\\Unreal Projects\\GameOffBug\\Intermediate\\Build\\Win64\\GameOffBugEditor\\Development\\Engine\\SharedPCH.Engine.ShadowErrors.h"
-		]
+		],
+		"files.associations": {
+			"filesystem": "cpp",
+			"xstring": "cpp",
+			"string": "cpp",
+			"iosfwd": "cpp"
+		}
 	},
 	"extensions": {
 		"recommendations": [

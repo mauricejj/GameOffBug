@@ -23,14 +23,11 @@ public:
 
 	/** Base turn rate, in deg/sec. Other scaling may affect final turn rate. */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category=Camera)
-	float BaseTurnRat;
+	float BaseTurnRate;
 
 	/** Base look up/down rate, in deg/sec. Other scaling may affect final rate. */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category=Camera)
 	float BaseLookUpRate;
-
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category=Camera)
-	float Timer;
 
 	virtual void Tick(float DeltaTime) override;
 
@@ -44,6 +41,10 @@ protected:
 
 	/** Called for side to side input */
 	void MoveRight(float Value);
+
+	void Hello(float Word);
+
+	void StopHello(float Word);
 
 	/** 
 	 * Called via input to turn at a given rate. 

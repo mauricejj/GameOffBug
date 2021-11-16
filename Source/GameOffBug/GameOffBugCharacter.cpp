@@ -16,14 +16,11 @@ AGameOffBugCharacter::AGameOffBugCharacter()
 {
 	PrimaryActorTick.bCanEverTick = true;
 
-	//set value for tick
-	Timer = 1.f;
-
 	// Set size for collision capsule
 	GetCapsuleComponent()->InitCapsuleSize(42.f, 96.0f);
 
 	// set our turn rates for input
-	BaseTurnRat = 44.f;
+	BaseTurnRate = 44.f;
 	BaseLookUpRate = 45.f;
 
 	// Don't rotate when the controller rotates. Let that just affect the camera.
@@ -62,6 +59,9 @@ void AGameOffBugCharacter::SetupPlayerInputComponent(class UInputComponent* Play
 	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ACharacter::Jump);
 	PlayerInputComponent->BindAction("Jump", IE_Released, this, &ACharacter::StopJumping);
 
+	PlayerInputComponent->BindAction("Hello", IE_Pressed, this, &AGameOffBugCharacter::Hello);
+	PlayerInputComponent->BindAction("Hello", IE_Released, this, &AGameOffBugCharacter::StopHello);
+
 	PlayerInputComponent->BindAxis("MoveForward", this, &AGameOffBugCharacter::MoveForward);
 	PlayerInputComponent->BindAxis("MoveRight", this, &AGameOffBugCharacter::MoveRight);
 
@@ -79,14 +79,17 @@ void AGameOffBugCharacter::SetupPlayerInputComponent(class UInputComponent* Play
 
 	// VR headset functionality
 	//PlayerInputComponent->BindAction("ResetVR", IE_Pressed, this, &AGameOffBugCharacter::OnResetVR);
-}
 
 	
+}
+
 
 void AGameOffBugCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-	
+	//UE_LOG(LogTemp,Warning,TEXT("time: %f"), DeltaTime);
+	//GEngine->AddOnScreenDebugMessage(-1,200,FColor::Green,FString::Printf(TEXT("Hello %s"),*GetActorLocation().ToString()));
+	GEngine->AddOnScreenDebugMessage(-1,200,FColor::Blue,FString::Printf(TEXT("v1")));
 }
 
 //void AGameOffBugCharacter::OnResetVR()
@@ -109,11 +112,20 @@ void AGameOffBugCharacter::Tick(float DeltaTime)
 //{
 //		StopJumping();
 //}
+void AGameOffBugCharacter::Hello(float Word)
+{
+
+}
+
+void AGameOffBugCharacter::StopHello(float Word)
+{
+
+}
 
 void AGameOffBugCharacter::TurnAtRate(float Rate)
 {
 	// calculate delta for this frame from the rate information
-	AddControllerYawInput(Rate * BaseTurnRat * GetWorld()->GetDeltaSeconds());
+	AddControllerYawInput(Rate * BaseTurnRate * GetWorld()->GetDeltaSeconds());
 }
 
 void AGameOffBugCharacter::LookUpAtRate(float Rate)
