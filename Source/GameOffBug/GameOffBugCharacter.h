@@ -42,9 +42,9 @@ protected:
 	/** Called for side to side input */
 	void MoveRight(float Value);
 
-	void Hello(float Word);
+	void Hello();
 
-	void StopHello(float Word);
+	void StopHello();
 
 	/** 
 	 * Called via input to turn at a given rate. 

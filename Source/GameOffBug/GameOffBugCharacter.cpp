@@ -89,7 +89,7 @@ void AGameOffBugCharacter::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 	//UE_LOG(LogTemp,Warning,TEXT("time: %f"), DeltaTime);
 	//GEngine->AddOnScreenDebugMessage(-1,200,FColor::Green,FString::Printf(TEXT("Hello %s"),*GetActorLocation().ToString()));
-	GEngine->AddOnScreenDebugMessage(-1,200,FColor::Blue,FString::Printf(TEXT("v1")));
+	//GEngine->AddOnScreenDebugMessage(-1,2000,FColor::Blue,FString::Printf(TEXT("v1")));
 }
 
 //void AGameOffBugCharacter::OnResetVR()
@@ -112,14 +112,14 @@ void AGameOffBugCharacter::Tick(float DeltaTime)
 //{
 //		StopJumping();
 //}
-void AGameOffBugCharacter::Hello(float Word)
+void AGameOffBugCharacter::Hello()
 {
-
+	GEngine->AddOnScreenDebugMessage(-1,2000,FColor::Blue,FString::Printf(TEXT("1 was pressed")));
 }
 
-void AGameOffBugCharacter::StopHello(float Word)
+void AGameOffBugCharacter::StopHello()
 {
-
+	GEngine->AddOnScreenDebugMessage(-1,2000,FColor::Blue,FString::Printf(TEXT("1 was released")));
 }
 
 void AGameOffBugCharacter::TurnAtRate(float Rate)
